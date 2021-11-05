@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 import AddContacts from "./components/AddContacts";
 import ContactList from "./components/ContactList";
 import { uuid } from "uuidv4";
+import ContactDeatails from "./components/ContactDeatails";
 
 function App() {
   const LOCAL_STROAGE_KEY = "contacts";
@@ -37,12 +39,35 @@ function App() {
   }, [contacts]);
   return (
     <div className="ui container">
-      <Header />
-      <AddContacts addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} getContactId={removeContactHandle} />
-      {/*giving in a prop or passing the prop(aka data)*/}
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ContactList
+                contacts={contacts}
+                getContactId={removeContactHandle}
+              />
+            }
+          />
+          <Route
+            path="/add"
+            element={<AddContacts addContactHandler={addContactHandler} />}
+          />
+          <Route path="/contacts/:id" element={<ContactDeatails />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
 
 export default App;
+{
+  /*giving in a prop or passing the prop(aka data)*/
+}
+
+{
+  /* <AddContacts addContactHandler={addContactHandler} />
+  <ContactList contacts={contacts} getContactId={removeContactHandle} /> */
+}

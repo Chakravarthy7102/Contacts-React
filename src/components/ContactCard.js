@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ContactCard = (props) => {
   //taking in the prop and retrivigndata from that
@@ -12,8 +13,15 @@ const ContactCard = (props) => {
         alt="user"
       />
       <div className="content">
-        <div className="ui header">{name}</div>
-        <div>{email}</div>
+        <Link
+          to={{
+            pathname: `/contacts/${id}`,
+            state: { contact: props.contact },
+          }}
+        >
+          <div className="ui header">{name}</div>
+          <div>{email}</div>
+        </Link>
       </div>
       <div className="ui right aligned header">
         <i

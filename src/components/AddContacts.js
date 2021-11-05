@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 
 class AddContacts extends React.Component {
   //creating state object to store the current state values
@@ -16,6 +18,10 @@ class AddContacts extends React.Component {
     //present state with current state of data
     this.props.addContactHandler(this.state);
     this.setState({ name: "", email: "" });
+    window.location.replace("/");
+    // const history = useHistory();
+    // this.props.history.push("/");
+    // useNavigate("/");
   };
   render() {
     return (
